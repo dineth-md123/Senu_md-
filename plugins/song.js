@@ -5,13 +5,14 @@ const { ytmp3 } = require("");
 cmd(
   {
     pattern: "song",
+    alias: ["play"],
     react: "🎵",
     desc: "Download Song",
     category: "download",
     filename: __filename,
   },
   async (
-    robin,
+    senu,
     mek,
     m,
     {
@@ -40,7 +41,7 @@ cmd(
     }
   ) => {
     try {
-      if (!q) return reply("*නමක් හරි ලින්ක් එකක් හරි දෙන්න* 🌚❤️");
+      if (!q) return reply("**");
 
       // Search for the video
       const search = await yts(q);
@@ -49,20 +50,20 @@ cmd(
 
       // Song metadata description
       let desc = `
-*❤️ROBIN SONG DOWNLOADER❤️*
+`*ROBIN SONG DOWNLOADER*`
 
-👻 *title* : ${data.title}
-👻 *description* : ${data.description}
-👻 *time* : ${data.timestamp}
-👻 *ago* : ${data.ago}
-👻 *views* : ${data.views}
-👻 *url* : ${data.url}
+👻 `*title*` : ${data.title}
+👻 `*description*` : ${data.description}
+👻 `*time*` : ${data.timestamp}
+👻 `*ago*` : ${data.ago}
+👻 `*views*` : ${data.views}
+👻 `*url*` : ${data.url}
 
-𝐌𝐚𝐝𝐞 𝐛𝐲 𝐒_𝐈_𝐇_𝐈_𝐋_𝐄_𝐋
+*MADE BY SENU-MD*
 `;
 
       // Send metadata thumbnail message
-      await robin.sendMessage(
+      await senu.sendMessage(
         from,
         { image: { url: data.thumbnail }, caption: desc },
         { quoted: mek }
@@ -84,7 +85,7 @@ cmd(
       }
 
       // Send audio file
-      await robin.sendMessage(
+      await senu.sendMessage(
         from,
         {
           audio: { url: songData.download.url },
@@ -94,18 +95,18 @@ cmd(
       );
 
       // Send as a document (optional)
-      await robin.sendMessage(
+      await senu.sendMessage(
         from,
         {
           document: { url: songData.download.url },
           mimetype: "audio/mpeg",
           fileName: `${data.title}.mp3`,
-          caption: "𝐌𝐚𝐝𝐞 𝐛𝐲 𝐒_𝐈_𝐇_𝐈_𝐋_𝐄_𝐋",
+          caption: "*MADE BY SENU-MD*",
         },
         { quoted: mek }
       );
 
-      return reply("*Thanks for using my bot* 🌚❤️");
+
     } catch (e) {
       console.log(e);
       reply(`❌ Error: ${e.message}`);
