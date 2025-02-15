@@ -31,6 +31,14 @@ const { File } = require("megajs");
 
 const ownerNumber = config.OWNER_NUM;
 
+//===== Auto read status ======//
+if (
+      mek.key &&
+      mek.key.remoteJid === "status@broadcast" &&
+      config.AUTO_READ_STATUS === "true"
+    ) {
+      await senu.readMessages([mek.key]);
+}
 //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + "/auth_info_baileys/creds.json")) {
   if (!config.SESSION_ID)
