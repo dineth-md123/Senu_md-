@@ -5,13 +5,13 @@ const { downloadMediaMessage } = require("../lib/msg.js"); // Adjust the path as
 cmd(
   {
     pattern: "sticker",
-    alias: ["s", "stick"],
+    alias: ["s"],
     desc: "Convert an image to a sticker",
     category: "utility",
     filename: __filename,
   },
   async (
-    robin,
+    senu,
     mek,
     m,
     {
@@ -53,14 +53,14 @@ cmd(
 
       // Create the sticker from the media
       const sticker = new Sticker(media, {
-        pack: "𝐑_𝐎_𝐁_𝐈_𝐍", // Sticker pack name
-        author: "𝐒_𝐈_𝐇_𝐈_𝐋_𝐄_𝐋", // Sticker author name
+        pack: "Senu-Md", // Sticker pack name
+        author: "Senu-Md", // Sticker author name
         type: StickerTypes.FULL, // Sticker type (FULL or CROPPED)
         quality: 50, // Quality of the output sticker (0–100)
       });
 
       const buffer = await sticker.toBuffer();
-      await robin.sendMessage(from, { sticker: buffer }, { quoted: mek });
+      await senu.sendMessage(from, { sticker: buffer }, { quoted: mek });
     } catch (e) {
       console.error(e);
       reply(`Error: ${e.message || e}`);
